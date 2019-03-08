@@ -5,13 +5,13 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {IonicModule} from '@ionic/angular';
 
-import {SearchPage} from './search.page';
+import {ResultSearchPage} from './result.search.page';
 import {PostSummupComponent} from './shared/post-summup/post-summup.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: SearchPage
+        component: ResultSearchPage
     }
 ];
 
@@ -23,9 +23,9 @@ const routes: Routes = [
         RouterModule.forChild(routes)
     ],
     declarations: [
-        SearchPage,
+        ResultSearchPage,
         PostSummupComponent
     ]
 })
-export class SearchPageModule {
+export class ResultSearchModule {
 }
