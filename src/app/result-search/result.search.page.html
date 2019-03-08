@@ -5,19 +5,26 @@
     <ion-row padding-horizontal>
         <ion-input class="search-input" [placeholder]="'burger 6 personnes'" padding></ion-input>
     </ion-row>
+    <!--TO DO : Reduce button size -->
+    <!--TO DO : Animate header, it's hidden while user action-->
     <ion-row padding>
-        <ion-col >
-            <!--TO DO : Reduce button size -->
-            <!--TO DO : Animate header, it's hidden while user action-->
-            <ion-button shape="round" color="warning" class="categ-badge">
-                <span color="warning"  >Catégorie 1</span>
-                <ion-icon name="close" class="detete-categ-icon" slot="end"></ion-icon>
-            </ion-button>
-            <ion-button shape="round" color="warning" class="categ-badge">
-                <span color="warning"  >Catégorie 1</span>
-                <ion-icon name="close" class="detete-categ-icon" slot="end"></ion-icon>
-            </ion-button>
-        </ion-col>
+        <ion-slides [options]="slideOpts">
+            <ion-slide>
+                <ion-badge class="categories-badge">Catégorie 1<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
+            </ion-slide>
+            <ion-slide>
+                <ion-badge class="categories-badge">Catégorie 1<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
+            </ion-slide>
+            <ion-slide>
+                <ion-badge class="categories-badge">Catégorie 1<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
+            </ion-slide>
+            <ion-slide>
+                <ion-badge class="categories-badge">Catégorie 1<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
+            </ion-slide>
+            <ion-slide>
+                <ion-badge class="categories-badge">Catégorie 1<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
+            </ion-slide>
+        </ion-slides>
     </ion-row>
 </ion-header>
 
@@ -26,3 +33,7 @@
     <app-post-summup></app-post-summup>
     <app-post-summup></app-post-summup>
 </ion-content>
+<!--<ion-button shape="round" color="warning" class="categ-badge">
+    <span color="warning"  >Catégorie 1</span>
+    <ion-icon name="close" class="delete-categ-icon" slot="end"></ion-icon>
+</ion-button>-->

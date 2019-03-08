@@ -6,10 +6,14 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./result.search.page.scss'],
 })
 export class ResultSearchPage implements OnInit {
+    slideOpts = {
+        slidesPerView: 3.5,
+        spaceBetween: 5,
+        freeMode: true,
+    };
 
     constructor() {
     }
-
     ngOnInit() {
     }
 
