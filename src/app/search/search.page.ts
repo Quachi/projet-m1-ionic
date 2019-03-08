@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-post-card',
-    templateUrl: './post-card.component.html',
-    styleUrls: ['./post-card.component.scss'],
+    selector: 'app-search',
+    templateUrl: './search.page.html',
+    styleUrls: ['./search.page.scss'],
 })
-export class PostCardComponent implements OnInit {
+export class SearchPage implements OnInit {
 
     constructor(private route: Router) {
     }
@@ -14,10 +14,14 @@ export class PostCardComponent implements OnInit {
     ngOnInit() {
     }
 
-    clickCard() {
-        this.route.navigate(['/post'])
+    search() {
+        this.route.navigate(['/result-search'])
             .catch(error => {
                 console.log(error);
             });
+    }
+
+    addCategory() {
+        console.log('ok');
     }
 }
