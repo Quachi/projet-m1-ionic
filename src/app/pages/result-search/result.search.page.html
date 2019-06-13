@@ -28,11 +28,12 @@
     </ion-row>
 </ion-header>
 
-<ion-content>
-    <app-post-summup></app-post-summup>
-    <app-post-summup></app-post-summup>
-    <app-post-summup></app-post-summup>
+<ion-content >
+    <div *ngFor="let post of posts;let i = index">
+        <app-post-summup [post]="post"></app-post-summup>
+    </div>
 </ion-content>
+
 <!--<ion-button shape="round" color="warning" class="categ-badge">
     <span color="warning"  >Catégorie 1</span>
     <ion-icon name="close" class="delete-categ-icon" slot="end"></ion-icon>
