@@ -1,0 +1,21 @@
+<ion-grid>
+  <ion-row>
+    <h3>Détails de l'annonce</h3>
+  </ion-row>
+  <ion-list>
+    <ion-item>
+      <ion-label class="post-detail-label">Type d'annonce</ion-label>
+      <div *ngFor="let type of post.types">
+        <p class="post-detail-text">{{type}}</p>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label class="post-detail-label">Nombres de personnes</ion-label>
+      <p class="post-detail-text">{{post.attendees.length}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-label class="post-detail-label">Date limite</ion-label>
+      <p class="post-detail-text">{{post.dateEvent | date: 'dd-MM-yyyy'}}</p>
+    </ion-item>
+  </ion-list>
+</ion-grid>
