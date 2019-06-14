@@ -3,12 +3,14 @@ import {User} from './user';
 
 export default interface Post {
     _id: string;
-    name: string;
     title: string;
     description: string;
-    attendees: Array<User>;
-    host: User;
-    types: Array<Type>;
+    attendees: Array<string | User>;
+    host: string | User;
+    types: Array<string | Type>;
     dateEvent: number;
     maxPlace: number;
+    location: string;
+    additionalInformation: string;
+    tags: Array<string>;
 }

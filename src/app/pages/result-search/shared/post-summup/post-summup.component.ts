@@ -11,7 +11,6 @@ export class PostSummupComponent implements OnInit {
     timeLeft: number;
     diffDays;
     diffHours;
-    diffMin;
     constructor() {
     }
 
