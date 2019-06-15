@@ -1,29 +1,13 @@
 <ion-grid>
     <ion-row padding-horizontal>
-        <h3>Les plus populaires</h3>
+        <h3>{{title}}</h3>
     </ion-row>
     <p class="show-case-description" padding-horizontal>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit dui, gravida quis interdum nec, ornare
-        euismod quam.
+        {{description}}
     </p>
     <ion-slides [options]="slideOpts">
-        <ion-slide>
-            <app-post-card></app-post-card>
-        </ion-slide>
-        <ion-slide>
-            <app-post-card></app-post-card>
-        </ion-slide>
-        <ion-slide>
-            <app-post-card></app-post-card>
-        </ion-slide>
-        <ion-slide>
-            <app-post-card></app-post-card>
-        </ion-slide>
-        <ion-slide>
-            <app-post-card></app-post-card>
-        </ion-slide>
-        <ion-slide>
-            <app-post-card></app-post-card>
+        <ion-slide *ngFor="let post of posts">
+            <app-post-card [post]="post"></app-post-card>
         </ion-slide>
     </ion-slides>
     <ion-row justify-content-center>

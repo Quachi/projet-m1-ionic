@@ -15,8 +15,6 @@ export class PostSummupComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('post', this.post);
-        console.log(new Date(1561034949000));
         this.timeLeft = Math.abs(this.post.dateEvent - new Date().getTime());
         this.diffDays = Math.ceil(this.timeLeft / (24 * 60 * 60 * 1000));
         this.diffHours = Math.ceil(this.timeLeft / (60 * 60 * 1000));
