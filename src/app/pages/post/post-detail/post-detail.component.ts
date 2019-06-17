@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import Profile from '../../../models/profile';
-import Post from '../../../models/post';
+import {Post} from '../../../models/post';
 
 @Component({
   selector: 'app-post-detail',

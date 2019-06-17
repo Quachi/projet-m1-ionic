@@ -10,6 +10,7 @@ import {PostHeaderComponent} from './post-header/post-header.component';
 import {PostDetailComponent} from './post-detail/post-detail.component';
 import {PostTagsComponent} from './post-tags/post-tags.component';
 import {PostInformationComplementaryComponent} from './post-information-complementary/post-information-complementary.component';
+import {SharedModule} from '../../shared/shared/shared.module';
 
 const routes: Routes = [
     {
@@ -23,7 +24,8 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         IonicModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        SharedModule
     ],
     declarations: [
         PostPage,

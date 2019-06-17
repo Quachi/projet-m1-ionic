@@ -8,16 +8,17 @@ import MOCK_POST from '../../shared/MOCK_POST';
 })
 export class ResultSearchPage implements OnInit {
     posts = MOCK_POST;
+    tags: Array<string> = ['tags1', 'tags2'] ;
     slideOpts = {
-        slidesPerView: 3.5,
+        slidesPerView: 1,
         spaceBetween: 5,
         freeMode: true,
     };
+    // headerScrollConfig: ScrollHideConfig = { cssProperty: 'margin-top', maxValue: 54 };
 
     constructor() {
     }
     ngOnInit() {
-        console.log(this.posts);
     }
 
 }

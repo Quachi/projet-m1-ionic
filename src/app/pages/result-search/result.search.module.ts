@@ -7,6 +7,7 @@ import {IonicModule} from '@ionic/angular';
 
 import {ResultSearchPage} from './result.search.page';
 import {PostSummupComponent} from './shared/post-summup/post-summup.component';
+import {SharedModule} from '../../shared/shared/shared.module';
 
 const routes: Routes = [
     {
@@ -20,11 +21,12 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         IonicModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        SharedModule
     ],
     declarations: [
         ResultSearchPage,
-        PostSummupComponent
+        PostSummupComponent,
     ]
 })
 export class ResultSearchModule {

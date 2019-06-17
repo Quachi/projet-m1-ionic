@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import Post from '../../../../models/post';
+import {Post} from '../../../../models/post';
 
 @Component({
     selector: 'app-post-card',
@@ -21,7 +21,7 @@ export class PostCardComponent implements OnInit {
     clickCard() {
         this.route.navigate(['/post'])
             .catch(error => {
-                console.log(error);
+                console.error(error);
             });
     }
 }

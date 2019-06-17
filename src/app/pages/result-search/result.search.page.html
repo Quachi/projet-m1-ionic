@@ -7,33 +7,26 @@
     </ion-row>
     <!--TO DO : Reduce button size -->
     <!--TO DO : Animate header, it's hidden while user action-->
-    <ion-row padding>
+    <ion-row *ngIf="tags.length < 6" padding>
+        <ion-badge  *ngFor="let tag of tags"  class="categories-badge">{{tag}}<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
+    </ion-row>
+
+    <ion-row padding *ngIf="tags.length > 6">
         <ion-slides [options]="slideOpts">
-            <ion-slide>
-                <ion-badge class="categories-badge">Catégorie 1<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
-            </ion-slide>
-            <ion-slide>
-                <ion-badge class="categories-badge">Catégorie 1<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
-            </ion-slide>
-            <ion-slide>
-                <ion-badge class="categories-badge">Catégorie 1<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
-            </ion-slide>
-            <ion-slide>
-                <ion-badge class="categories-badge">Catégorie 1<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
-            </ion-slide>
-            <ion-slide>
-                <ion-badge class="categories-badge">Catégorie 1<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
+            <ion-slide *ngFor="let tag of tags">
+                <ion-badge class="categories-badge">{{tag}}<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
             </ion-slide>
         </ion-slides>
     </ion-row>
+
 </ion-header>
 
-<ion-content >
-    <div *ngFor="let post of posts;let i = index">
+<ion-content #pageContent [scrollEvents]="true">
+    <div *ngFor="let post of posts">
         <app-post-summup [post]="post"></app-post-summup>
     </div>
 </ion-content>
-
+<app-toolbar [pageContent]="pageContent"></app-toolbar>
 <!--<ion-button shape="round" color="warning" class="categ-badge">
     <span color="warning"  >Catégorie 1</span>
     <ion-icon name="close" class="delete-categ-icon" slot="end"></ion-icon>

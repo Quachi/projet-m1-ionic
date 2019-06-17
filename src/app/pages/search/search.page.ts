@@ -17,7 +17,7 @@ export class SearchPage implements OnInit {
     search() {
         this.route.navigate(['/result-search'])
             .catch(error => {
-                console.log(error);
+                console.error(error);
             });
     }
 

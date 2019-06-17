@@ -1,7 +1,7 @@
 import {Type} from './type';
 import {User} from './user';
 
-export default interface Post {
+export interface Post {
     _id: string;
     title: string;
     description: string;
@@ -12,5 +12,28 @@ export default interface Post {
     maxPlace: number;
     location: string;
     additionalInformation: string;
+    tags: Array<string>;
+}
+
+export interface SearchPost {
+    title: string;
+    description: string;
+    host: string | User;
+    types: Array<string | Type>;
+    dateEvent: number;
+    maxPlace: number;
+    location: string;
+    tags: Array<string>;
+}
+
+export interface AddPost {
+    title: string;
+    description: string;
+    host: string | User;
+    types: Array<string | Type>;
+    dateEvent: number;
+    maxPlace: number;
+    location: string;
+    additionalInformation?: string;
     tags: Array<string>;
 }
