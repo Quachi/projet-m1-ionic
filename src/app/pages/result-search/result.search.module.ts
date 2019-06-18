@@ -7,7 +7,7 @@ import {IonicModule} from '@ionic/angular';
 
 import {ResultSearchPage} from './result.search.page';
 import {PostSummupComponent} from './shared/post-summup/post-summup.component';
-import {SharedModule} from '../../shared/shared/shared.module';
+import {SharedModule} from '../../shared/shared.module';
 
 const routes: Routes = [
     {

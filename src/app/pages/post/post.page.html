@@ -6,10 +6,15 @@
         <app-post-header [hostProfile]="hostProfile" [post]="post"></app-post-header>
         <app-post-detail [hostProfile]="hostProfile" [post]="post"></app-post-detail>
         <app-post-tags [tags]="post.tags"></app-post-tags>
-        <app-post-information-complementary [additionalInformation]="post.additionalInformation"></app-post-information-complementary>
+        <app-post-information-complementary
+                [additionalInformation]="post.additionalInformation">
+        </app-post-information-complementary>
 
         <ion-button class="button-orange" expand="block" shape="round">Voir les résultats</ion-button>
         <ion-button class="button-orange" expand="block" shape="round">S'inscrire</ion-button>
+        <ion-button class="button-orange" expand="block" shape="round" (click)="presentModal()">
+            Modal
+        </ion-button>
     </div>
 </ion-content>
 <app-toolbar></app-toolbar>

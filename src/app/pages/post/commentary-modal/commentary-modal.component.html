@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="primary">
+            <ion-button (click)="closeModal()">Close</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <h1></h1>
+    <ion-list-header>
+        <ion-label class="header-text">Espace commentaire</ion-label>
+    </ion-list-header>
+    <ion-list *ngFor="let commentary of commentaries">
+        <ion-item>
+            <ion-avatar slot="start">
+                <img src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="avatar">
+            </ion-avatar>
+            <div class="commentary-block">
+                <h2>{{user.name | titlecase}}</h2>
+                <h3>{{commentary.title | titlecase}}</h3>
+                <p class="commentary-text">{{commentary.text | titlecase}}</p>
+            </div>
+        </ion-item>
+
+    </ion-list>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-input
+                placeholder="Ajouter un commentaire"
+                class="input-commentary"
+                padding></ion-input>
+        <ion-button slot="primary" [fill]="'outline'">
+            <ion-icon name="arrow-round-up"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-footer>

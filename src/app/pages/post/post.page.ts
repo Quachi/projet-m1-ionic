@@ -1,23 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import MOCK_POST from '../../shared/MOCK_POST';
 import MOCK_PROFILE from '../../shared/MOCK_PROFILE';
 import Profile from '../../models/profile';
 import {Post} from '../../models/post';
+import {ModalController} from '@ionic/angular';
+import {CommentaryModalComponent} from './commentary-modal/commentary-modal.component';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.page.html',
-  styleUrls: ['./post.page.scss'],
+    selector: 'app-post',
+    templateUrl: './post.page.html',
+    styleUrls: ['./post.page.scss'],
 })
 export class PostPage implements OnInit {
-  post: Post = MOCK_POST[0];
-  hostProfile: Profile;
-  constructor() { }
+    post: Post = MOCK_POST[0];
+    hostProfile: Profile;
 
-  ngOnInit() {
-    this.hostProfile = MOCK_PROFILE.find((profile) => {
-      return profile._id === this.post.host;
-    });
-  }
+    constructor(public modalController: ModalController) {
+    }
+
+    ngOnInit() {
+        this.hostProfile = MOCK_PROFILE.find((profile) => {
+            return profile._id === this.post.host;
+        });
+    }
+
+    async presentModal() {
+        const modal = await this.modalController.create({
+            component: CommentaryModalComponent,
+            componentProps: {value: 123},
+            cssClass: 'modal'
+        });
+        return await modal.present();
+    }
+
 
 }

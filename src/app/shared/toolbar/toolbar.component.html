@@ -1,0 +1,31 @@
+<ion-footer [scrollHide]="footerScrollConfig" [scrollContent]="pageContent">
+    <ion-tab-bar slot="bottom" >
+
+        <ion-tab-button tab="home" (click)="redirect('home')" [selected]="true">
+            <ion-label>Home</ion-label>
+            <ion-icon name="home"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="book"  (click)="redirect('result-search')" >
+            <ion-label>Post</ion-label>
+            <ion-icon name="book"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="search" (click)="redirect('search')">
+            <ion-label>Search</ion-label>
+            <ion-icon name="search"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="contact" (click)="redirect('login')">
+            <ion-label>Settings</ion-label>
+            <ion-icon name="contact"></ion-icon>
+        </ion-tab-button>
+
+        <ion-tab-button tab="account" (click)="redirect('settings')">
+            <ion-label>Settings</ion-label>
+            <ion-icon name="settings"></ion-icon>
+        </ion-tab-button>
+
+    </ion-tab-bar>
+
+</ion-footer>
