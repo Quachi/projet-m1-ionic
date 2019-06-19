@@ -1,15 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../shared/services/user.service';
+import {LoginUser} from '../../models/user';
+import {HttpService} from '../../shared/services/http.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+    selector: 'app-login',
+    templateUrl: './login.page.html',
+    styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+    private loginForm: FormGroup;
 
-  constructor() { }
+    constructor(private formBuilder: FormBuilder,
+                private userService: UserService,
+                private httpService: HttpService,
+                private router: Router) {
+        this.loginForm = this.formBuilder.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required],
+        });
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
+    submit() {
+        const user: LoginUser = this.loginForm.getRawValue();
+        console.log(user);
+        this.userService.login(user).then(response => {
+            this.httpService.setToken(response.token);
+            this.userService.currentUserSubject.next(user);
+            this.router.navigate(['/home'])
+                .catch(error => console.error(error));
+            localStorage.setItem('currentUser', JSON.stringify(user));
+        });
+    }
 }

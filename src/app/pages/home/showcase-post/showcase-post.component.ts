@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import MOCK_POST from '../../../shared/MOCK_POST';
+import MOCK_POST from '../../../shared/MOCK/MOCK_POST';
 import {Post} from '../../../models/post';
 
 @Component({

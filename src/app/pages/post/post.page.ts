@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import MOCK_POST from '../../shared/MOCK_POST';
-import MOCK_PROFILE from '../../shared/MOCK_PROFILE';
-import Profile from '../../models/profile';
+import MOCK_POST from '../../shared/MOCK/MOCK_POST';
+import MOCK_PROFILE from '../../shared/MOCK/MOCK_PROFILE';
+import {Profile} from '../../models/profile';
 import {Post} from '../../models/post';
 import {ModalController} from '@ionic/angular';
 import {CommentaryModalComponent} from './commentary-modal/commentary-modal.component';

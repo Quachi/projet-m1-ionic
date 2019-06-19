@@ -1,3 +1,22 @@
 ion-input{
-  border:1px solid;
+  -moz-box-shadow:    inset 1px 1px 1px 1px #ccc;
+  -webkit-box-shadow: inset 1px 1px 1px 1px #ccc;
+  box-shadow:         inset 1px 1px 1px 1px #ccc;
+  border-radius: 5px;
+}
+
+ion-item{
+  border: 0;
+  margin: 10px 0
+}
+
+ion-button{
+  margin: 10px;
+}
+.header-login{
+  font-size: 36px;
+}
+
+.input-label{
+  font-size: 16px;
 }

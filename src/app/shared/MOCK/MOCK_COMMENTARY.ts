@@ -1,4 +1,4 @@
-import {Commentary} from '../models/comment';
+import {Commentary} from '../../models/comment';
 
 const MOCK_COMMENTARY: Array<Commentary> = [
     {
@@ -7,7 +7,7 @@ const MOCK_COMMENTARY: Array<Commentary> = [
         createDate: 1234567654321,
         user: {
             '_id': '12343423',
-            'name': 'Kevin Quach',
+            'username': 'Kevin Quach',
             'email': 'kquach@lecko.fr'
         },
         title: 'ENCORE'
@@ -18,7 +18,7 @@ const MOCK_COMMENTARY: Array<Commentary> = [
         createDate: 1234567654321,
         user: {
             '_id': '12343423',
-            'name': 'Kevin Quach',
+            'username': 'Kevin Quach',
             'email': 'kquach@lecko.fr'
         },
         title: 'ENCORE'
@@ -29,7 +29,7 @@ const MOCK_COMMENTARY: Array<Commentary> = [
         createDate: 1234567654321,
         user: {
             '_id': '12343423',
-            'name': 'Kevin Quach',
+            'username': 'Kevin Quach',
             'email': 'kquach@lecko.fr'
         },
         title: 'ENCORE'
@@ -40,7 +40,7 @@ const MOCK_COMMENTARY: Array<Commentary> = [
         createDate: 1234567654321,
         user: {
             '_id': '12343423',
-            'name': 'Kevin Quach',
+            'username': 'Kevin Quach',
             'email': 'kquach@lecko.fr'
         },
         title: 'ENCORE'
@@ -51,7 +51,7 @@ const MOCK_COMMENTARY: Array<Commentary> = [
         createDate: 1234567654321,
         user: {
             '_id': '12343423',
-            'name': 'Kevin Quach',
+            'username': 'Kevin Quach',
             'email': 'kquach@lecko.fr'
         },
         title: 'ENCORE'

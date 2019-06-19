@@ -1,3 +1,38 @@
-<ion-input placeholder="Login" [autofocus]="true"></ion-input>
-<ion-input placeholder="Password" [inputmode]="'password'" type="password"></ion-input>
+<ion-content padding>
+    <ion-header>
+        <ion-label class="header-login">
+            Bienvenue
+        </ion-label>
+    </ion-header>
+    <form (ngSubmit)="submit()" [formGroup]="loginForm">
+        <ion-item [lines]="'none'">
+            <ion-label class="input-label" position="floating">Login</ion-label>
+            <ion-input
+                    placeholder="Login"
+                    [autofocus]="true"
+                    formControlName="username"
+                    padding
+            ></ion-input>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-label class="input-label" position="floating">Password</ion-label>
+            <ion-input
+                    placeholder="Password"
+                    [inputmode]="'password'"
+                    type="password"
+                    formControlName="password"
+                    padding
+            >
+            </ion-input>
+        </ion-item>
+        <ion-button type="submit" [disabled]="!loginForm.valid" expand="block">Connexion</ion-button>
+    </form>
+    <div text-center >
+        <a>Mot de passe oublié ?</a>
+        <p>
+            Vous n'avez pas de compte ?<a> Inscription</a>
+        </p>
+    </div>
+
+</ion-content>
 <app-toolbar></app-toolbar>

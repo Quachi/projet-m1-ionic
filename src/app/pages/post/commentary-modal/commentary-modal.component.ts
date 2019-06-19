@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {Commentary} from '../../../models/comment';
-import MOCK_COMMENTARY from '../../../shared/MOCK_COMMENTARY';
-import {HttpService} from '../../../shared/http.service';
+import MOCK_COMMENTARY from '../../../shared/MOCK/MOCK_COMMENTARY';
 import {User} from '../../../models/user';
 
 @Component({
@@ -14,7 +13,7 @@ export class CommentaryModalComponent implements OnInit {
     commentaries: Array<Commentary> = MOCK_COMMENTARY;
     user: User = {
         '_id': '123452',
-        'name': 'kevin',
+        'username': 'kevin',
         'email': 'kquach@lecko.fr',
     };
 
