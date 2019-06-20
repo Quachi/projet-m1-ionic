@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {LoginUser, User} from '../../models/user';
 import {HttpService} from './http.service';
 import {environment} from '../../../environments/environment';
+import * as moment from 'moment';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +14,12 @@ export class UserService {
     currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
 
     constructor(public httpService: HttpService) {
+    }
+
+    static getExpiration() {
+        const expiration = localStorage.getItem('expires_at');
+        const expiresAt = JSON.parse(expiration);
+        return moment(expiresAt);
     }
 
     getCurrentUser() {
@@ -26,6 +33,18 @@ export class UserService {
     getUsersObservable(): Observable<User> {
         return this.currentUserSubject.asObservable();
     }
+
+    private setSession(authResult) {
+        const expiresAt = moment().add(authResult.expiresIn, 'second');
+
+        localStorage.setItem('id_token', authResult.idToken);
+        localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    }
+
+    public isLoggedIn() {
+        return moment().isBefore(UserService.getExpiration());
+    }
+
 
     subscribe(user: User): Promise<any> {
         return this
@@ -42,6 +61,8 @@ export class UserService {
 
     logout() {
         this.currentUserSubject.next(null);
+        localStorage.removeItem('id_token');
+        localStorage.removeItem('expires_at');
     }
 
     loadUser() {

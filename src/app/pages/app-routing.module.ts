@@ -8,14 +8,16 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {path: 'login', loadChildren: './login/login.module#LoginPageModule'},
-    {path: 'post', loadChildren: './post/post.module#PostPageModule'},
+    {path: 'post/:id', loadChildren: './post/post.module#PostPageModule'},
     {path: 'result-search', loadChildren: './result-search/result.search.module#ResultSearchModule'},
     {path: 'home', loadChildren: './home/home.module#HomePageModule'},
     {path: 'search', loadChildren: './search/search.module#SearchPageModule'},
+    {path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule'},
     {
         path: '**',
         redirectTo: 'home',
-    }
+    },
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' }
 ];
 
 @NgModule({

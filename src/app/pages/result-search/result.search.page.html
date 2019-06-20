@@ -1,8 +1,5 @@
 <ion-header class="header-search">
-    <ion-toolbar>
-        <ion-title>search</ion-title>
-    </ion-toolbar>
-    <ion-row padding-horizontal>
+    <ion-row padding-horizontal padding-top>
         <ion-input class="search-input" [placeholder]="'burger 6 personnes'" padding></ion-input>
     </ion-row>
     <!--TO DO : Reduce button size -->
@@ -18,12 +15,11 @@
             </ion-slide>
         </ion-slides>
     </ion-row>
-
 </ion-header>
 
 <ion-content #pageContent [scrollEvents]="true">
     <div *ngFor="let post of posts">
-        <app-post-summup [post]="post"></app-post-summup>
+        <app-post-summup [post]="post" (click)="detailPost(post._id)"></app-post-summup>
     </div>
 </ion-content>
 <app-toolbar [pageContent]="pageContent"></app-toolbar>

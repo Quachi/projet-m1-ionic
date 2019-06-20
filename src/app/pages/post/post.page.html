@@ -1,4 +1,4 @@
-<ion-content [scrollEvents]="true">
+<ion-content #pageContent [scrollEvents]="true">
     <ion-header>
         <img [src]="'./assets/image/double-burger.jpg'" [alt]="'header-post'">
     </ion-header>
@@ -10,11 +10,19 @@
                 [additionalInformation]="post.additionalInformation">
         </app-post-information-complementary>
 
-        <ion-button class="button-orange" expand="block" shape="round">Voir les résultats</ion-button>
-        <ion-button class="button-orange" expand="block" shape="round">S'inscrire</ion-button>
-        <ion-button class="button-orange" expand="block" shape="round" (click)="presentModal()">
+        <!--<ion-button class="button-orange" expand="block" shape="round">Voir les résultats</ion-button>-->
+        <ion-button *ngIf="!isLogged"
+                    class="button-orange"
+                    expand="block"
+                    shape="round">
+            S'inscrire
+        </ion-button>
+        <ion-button *ngIf="isLogged"
+                    class="button-orange"
+                    expand="block"
+                    shape="round" (click)="presentModal()">
             Voir les commentaires
         </ion-button>
     </div>
 </ion-content>
-<app-toolbar></app-toolbar>
+<app-toolbar [pageContent]="pageContent"></app-toolbar>
