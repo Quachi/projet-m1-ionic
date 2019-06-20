@@ -1,0 +1,34 @@
+.commentary-block {
+  display: block;
+}
+
+p, h2, h3 {
+  margin:2px;
+  font-weight: normal;
+}
+
+h2{
+  font-size: 17px;
+}
+
+h3{
+  font-size: 14px;
+}
+
+.commentary-text{
+  color: rgb(153, 153, 153);
+  font-size: 14px;
+}
+
+.header-text{
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.input-commentary {
+  text-transform: capitalize;
+  -moz-box-shadow:    1px 1px 1px 1px #ccc;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  box-shadow:         0 0 6px #ccc;
+  border-radius: 10px;
+}

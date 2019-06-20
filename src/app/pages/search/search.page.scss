@@ -1,0 +1,19 @@
+.search-btn{
+  --background: #F7821B;
+}
+
+.search-input {
+  text-transform: capitalize;
+  -moz-box-shadow:    1px 1px 1px 1px #ccc;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  box-shadow:         0 0 6px #ccc;
+  border-radius: 10px;
+}
+
+.categories-badge{
+  background: #F7821B;
+}
+
+#proximity-link{
+  color:#F7821B;
+}

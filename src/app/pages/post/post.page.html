@@ -1,0 +1,28 @@
+<ion-content #pageContent [scrollEvents]="true">
+    <ion-header>
+        <img [src]="'./assets/image/double-burger.jpg'" [alt]="'header-post'">
+    </ion-header>
+    <div padding>
+        <app-post-header [hostProfile]="hostProfile" [post]="post"></app-post-header>
+        <app-post-detail [hostProfile]="hostProfile" [post]="post"></app-post-detail>
+        <app-post-tags [tags]="post.tags"></app-post-tags>
+        <app-post-information-complementary
+                [additionalInformation]="post.additionalInformation">
+        </app-post-information-complementary>
+
+        <!--<ion-button class="button-orange" expand="block" shape="round">Voir les résultats</ion-button>-->
+        <ion-button *ngIf="!isLogged"
+                    class="button-orange"
+                    expand="block"
+                    shape="round">
+            S'inscrire
+        </ion-button>
+        <ion-button *ngIf="isLogged"
+                    class="button-orange"
+                    expand="block"
+                    shape="round" (click)="presentModal()">
+            Voir les commentaires
+        </ion-button>
+    </div>
+</ion-content>
+<app-toolbar [pageContent]="pageContent"></app-toolbar>

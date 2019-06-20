@@ -1,0 +1,25 @@
+.search-input {
+  text-transform: capitalize;
+  -moz-box-shadow:    1px 1px 1px 1px #ccc;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  box-shadow:         0 0 6px #ccc;
+  border-radius: 10px;
+}
+
+.header-search{
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .12);
+}
+
+.categ-badge{
+  font-size: 14px;
+}
+
+.delete-categ-icon{
+  position: relative;
+  top: 2px;
+}
+
+.categories-badge{
+  margin: 0 3px;
+  background: #F7821B;
+}
