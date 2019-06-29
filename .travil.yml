@@ -15,11 +15,11 @@ script:
   - npm install
 
 stages:
-  - deploy-develop
+  - deploy
 
 jobs:
   include:
-    - stage: deploy-develop
+    - stage: deploy
       if: branch = develop
       name: "Deploy to develop HEROKU"
       skip_cleanup: true
