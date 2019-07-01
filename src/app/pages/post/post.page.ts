@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import MOCK_POST from '../../shared/MOCK/MOCK_POST';
-import MOCK_PROFILE from '../../shared/MOCK/MOCK_PROFILE';
-import {Profile} from '../../models/profile';
-import {Post} from '../../models/post';
+// import MOCK_POST from '../../shared/MOCK/MOCK_POST';
+// import MOCK_PROFILE from '../../shared/MOCK/MOCK_PROFILE';
+// import {Profile} from '../../models/profile';
+// import {Post} from '../../models/post';
 import {ModalController} from '@ionic/angular';
 import {CommentaryModalComponent} from './commentary-modal/commentary-modal.component';
-import {UserService} from '../../shared/services/user.service';
-import {User} from '../../models/user';
+// import {UserService} from '../../shared/services/user.service';
+// import {User} from '../../models/user';
 
 @Component({
     selector: 'app-post',
@@ -14,7 +14,7 @@ import {User} from '../../models/user';
     styleUrls: ['./post.page.scss'],
 })
 export class PostPage implements OnInit {
-    post: Post = MOCK_POST[0];
+    post= []
     hostProfile: Profile;
     isLogged: boolean;
 
@@ -22,9 +22,10 @@ export class PostPage implements OnInit {
     }
 
     ngOnInit() {
-        this.hostProfile = MOCK_PROFILE.find((profile) => {
-            return profile._id === this.post.host;
-        });
+        // this.hostProfile = MOCK_PROFILE.find((profile) => {
+        //     return profile._id === this.post.host;
+        // });
+        this.hostProfile = false
         this.isLogged = this.userService.getCurrentUser() !== null;
 
     }

@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import { HttpService } from "../../../../shared/services/http.service"
 import {Post} from '../../../../models/post';
+
 
 @Component({
     selector: 'app-post-card',
@@ -9,19 +11,19 @@ import {Post} from '../../../../models/post';
 })
 export class PostCardComponent implements OnInit {
     @Input() post: Post;
-    diffDays;
-    constructor(private route: Router) {
-    }
+    diffDays: number
+    media: string = ""
+
+    constructor(private router: Router, private HttpService: HttpService) {}
 
     ngOnInit() {
-        const timeLeft = Math.abs(this.post.dateEvent - new Date().getTime());
-        this.diffDays = Math.ceil(timeLeft / (24 * 60 * 60 * 1000));
+        const timeLeft = Math.abs(this.post.timestamp - new Date().getTime());
+        this.diffDays = Math.ceil(timeLeft / (24 * 60 * 60 * 1000))
+        this.media = this.post.medias[0] ? this.post.medias[0] : "https://via.placeholder.com/1280x720?text=No+picture+yet"
     }
 
     clickCard() {
-        this.route.navigate(['/post'])
-            .catch(error => {
-                console.error(error);
-            });
+        console.log("Event click", "single post")
+        this.router.navigate(["/post"]).catch(err => console.error(err))
     }
 }

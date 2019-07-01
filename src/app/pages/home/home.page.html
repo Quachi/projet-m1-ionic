@@ -1,7 +1,9 @@
 <ion-content #pageContent [scrollEvents]="true">
     <img src="assets/image/header-home.jpg" alt="header">
-    <app-showcase-post [title]="'A proximité'"></app-showcase-post>
-    <app-showcase-post [title]="'Les plus récents'"></app-showcase-post>
-    <app-showcase-post ></app-showcase-post>
+    <app-showcase-post 
+        [title]="'À proximité'"
+        [description]="'Les annonces de votre quartier.'"
+        [query]="'postal=75003'"
+    ></app-showcase-post>
 </ion-content>
 <app-toolbar [pageContent]="pageContent"></app-toolbar>

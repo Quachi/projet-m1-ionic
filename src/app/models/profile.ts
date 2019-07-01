@@ -1,15 +1,14 @@
-import {Post} from './post';
-import {Commentary} from './comment';
+// import {Post} from './post';
+// import {Commentary} from './comment';
 
-export interface Profile {
-    _id?: string;
-    id?: string;
-    posts: Array<Post>;
-    historyPosts: Array<Post>;
-    comments: Array<Commentary>;
-    historyComments: Array<Commentary>;
-    username: string;
-    mail: string;
+// export interface Profile {
+//     _id?: string;
+//     id?: string;
+//     posts: Array<Post>;
+//     historyPosts: Array<Post>;
+//     comments: Array<Commentary>;
+//     historyComments: Array<Commentary>;
+//     username: string;
+//     mail: string;
 
-}
-
+// }

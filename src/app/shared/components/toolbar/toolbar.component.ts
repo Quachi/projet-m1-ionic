@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {ScrollHideConfig} from '../../../directive/scroll-hide.directive';
-import {UserService} from '../../services/user.service';
+import {Component, Input, OnInit} from '@angular/core'
+import {Router} from '@angular/router'
+import {ScrollHideConfig} from '../../../directive/scroll-hide.directive'
+import { UserService } from "../../services/user.service"
+
 
 @Component({
     selector: 'app-toolbar',
@@ -9,20 +10,22 @@ import {UserService} from '../../services/user.service';
     styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent implements OnInit {
-    footerScrollConfig: ScrollHideConfig = {cssProperty: 'margin-bottom', maxValue: undefined};
-    isLogged = false;
-    @Input() pageContent;
+    footerScrollConfig: ScrollHideConfig = {cssProperty: 'margin-bottom', maxValue: undefined}
+    isLogged = false
+    @Input() pageContent
 
-    constructor(private router: Router,
-                private userService: UserService) {
+    constructor(private router: Router, private UserService: UserService) {
     }
 
     ngOnInit() {
-        this.isLogged = this.userService.getCurrentUser() !== null;
+        console.log("check : ", this.UserService.check())
+        console.log("token : ", this.UserService.getToken())
+        console.log("expiration date : ", this.UserService.getExpiration())
+        this.isLogged = this.UserService.check()
     }
 
     redirect(route) {
-        this.router.navigate(['/' + route])
-            .catch(err => console.error(err));
+        this.router.navigate(['/' + route]).catch(err => console.error(err))
+        this.isLogged = this.UserService.check()
     }
 }

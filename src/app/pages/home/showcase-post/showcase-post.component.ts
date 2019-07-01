@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import MOCK_POST from '../../../shared/MOCK/MOCK_POST';
-import {Post} from '../../../models/post';
+import { HttpService } from "../../../shared/services/http.service"
+import { Post } from "../../../models/post"
+
 
 @Component({
     selector: 'app-showcase-post',
@@ -14,21 +15,19 @@ export class ShowcasePostComponent implements OnInit {
         spaceBetween: 0,
         freeMode: true,
     };
-    @Input() title = 'Les plus populaires';
-    @Input() description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit dui, gravida quis interdum nec, ornare\n' +
-        '        euismod quam.';
-    @Input() posts: Array<Post> = MOCK_POST;
+    @Input() title
+    @Input() description
+    @Input() query
+    @Input() posts: Array<Post>
 
-    constructor(private route: Router) {
-    }
+    constructor(private router: Router, private HttpService: HttpService) {}
 
     ngOnInit() {
+        const url = `http://localhost:8080/post/search?${this.query}`
+        this.HttpService.get(url).subscribe((data: [Post]) => {
+         this.posts = data   
+        }, err => console.error(err))
     }
 
-    showMore() {
-        this.route.navigate(['/result-search'])
-            .catch(error => {
-                console.error(error);
-            });
-    }
+    showMore = () => this.router.navigate(['/result-search']).catch(error => console.error(error))
 }

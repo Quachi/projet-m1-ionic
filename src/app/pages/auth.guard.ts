@@ -8,18 +8,16 @@ import {UserService} from '../shared/services/user.service';
 export class AuthGuard implements CanActivate {
     constructor(
         private router: Router,
-        private userService: UserService
+        private UserService: UserService
     ) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        console.log('can activate', this.userService.getCurrentUser());
-        if (this.userService.getCurrentUser()) {
+        if (this.UserService.check()) {
             // authorised so return true
             return true;
         }
 
-        // not logged in so redirect to login page with the return url
         this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}})
             .catch(error => {
                 console.error(error);
