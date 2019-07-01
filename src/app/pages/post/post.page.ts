@@ -25,7 +25,8 @@ export class PostPage implements OnInit {
         this.hostProfile = MOCK_PROFILE.find((profile) => {
             return profile._id === this.post.host;
         });
-        this.isLogged = this.userService.getCurrentUser() !== null;
+        // this.isLogged = this.userService.getCurrentUser() !== null;
+        this.isLogged = this.userService.check()
 
     }
 

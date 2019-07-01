@@ -9,20 +9,17 @@ import {UserService} from '../../services/user.service';
     styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent implements OnInit {
+    
     footerScrollConfig: ScrollHideConfig = {cssProperty: 'margin-bottom', maxValue: undefined};
-    isLogged = false;
+    isLogged: boolean
     @Input() pageContent;
 
-    constructor(private router: Router,
-                private userService: UserService) {
-    }
+    constructor(private router: Router, private userService: UserService) {
 
+    }
     ngOnInit() {
-        this.isLogged = this.userService.getCurrentUser() !== null;
+        setTimeout(() => this.isLogged = this.userService.check(), 1)
     }
 
-    redirect(route) {
-        this.router.navigate(['/' + route])
-            .catch(err => console.error(err));
-    }
+    redirect = (route: string) => this.router.navigate([`/${route}`]).catch(err => console.error(err))
 }
