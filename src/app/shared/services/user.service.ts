@@ -1,18 +1,6 @@
-// import {Injectable} from '@angular/core';
-// import {BehaviorSubject, Observable} from 'rxjs';
-// import {LoginUser, User} from '../../models/user';
-// import {Storage} from '@ionic/storage';
-// import {HttpService} from './http.service';
-// import {environment} from '../../../environments/environment';
-// import * as moment from 'moment';
-// import { getNodeInjectable } from '@angular/core/src/render3/di';
-
-// @Injectable({
-//     providedIn: 'root'
-// })
-
 import { Injectable } from "@angular/core"
 import {Storage} from '@ionic/storage'
+import {BehaviorSubject} from 'rxjs';
 import { Token } from "../../models/user"
 
 @Injectable({
@@ -21,39 +9,24 @@ import { Token } from "../../models/user"
 
 export class UserService {
 
-    private user: Token = {token : undefined, expiresIn: undefined}
+    private user: BehaviorSubject<Token> = new BehaviorSubject<Token>({token: undefined, expiresIn: undefined})
     
     constructor(private storage: Storage) {
-        ["token", "expiresIn"].forEach(key => {
-            this.storage.get(key).then(data => this.user[key] = data).catch(err => this.user[key] = undefined)
-        })
+        this.storage.get("user").then((data: Token) => this.user.next(data))
     }
 
-    getToken = () => this.user.token
-    getExpiration = () => this.user.expiresIn
-
-    check = () => (this.user.token && Date.now() < this.user.expiresIn) ? true : false
-
-    setTokenAndExpiration = (data: Token) => {
-        for (const key in data)
-        this.storage.set(key, data[key]).then(element => this.user[key] = element)
+    check = () => {
+        const {token, expiresIn} = this.user.getValue()
+        return (token && Date.now() < expiresIn) ? true : false
     }
 
-
+    getUser = () => this.user.getValue()
+    setUser= (data: Token) => this.storage.set("user", data).then((data: Token) => this.user.next(data))
 }
-
-
-
-
-
-
-
-
 
 
 // export class UserService {
 //     url = environment.apiUrl;
-//     // userSubject: Subject<User> = new Subject<User>();
 //     currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
 
 //     constructor(public httpService: HttpService, private storage: Storage) {
