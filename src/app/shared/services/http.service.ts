@@ -25,7 +25,10 @@ export class HttpService {
 
     setToken(token: string) {
         this.token = token;
-        this.storage.set('token', token);
+        this.storage.set('token', token)
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     buildToken() {

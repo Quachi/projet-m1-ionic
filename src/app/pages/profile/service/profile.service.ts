@@ -7,7 +7,7 @@ import {Profile} from '../../../models/profile';
     providedIn: 'root'
 })
 export class ProfileService {
-    apiUrl = environment.apiUrl;
+    private apiUrl = environment.apiUrl;
 
     constructor(private httpService: HttpService) {
     }
