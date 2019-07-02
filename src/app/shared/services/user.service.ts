@@ -73,4 +73,6 @@ export class UserService {
                 this.currentUserSubject.next(response);
             }, error => console.error(error));
     }
+
+
 }

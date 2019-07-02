@@ -1,14 +1,14 @@
 <ion-card>
     <img [src]="'./assets/image/double-burger.jpg'" [alt]="'header-post'">
     <ion-row padding-top padding-horizontal>
-        <h1>{{post.title}}</h1>
+        <h1>{{post.name}}</h1>
     </ion-row>
     <ion-row padding>
         {{post.description}}
     </ion-row>
     <ion-row class="cardfooter">
         <ion-col>
-            <p class="footer-text-card">{{post.attendees.length}}/{{post.maxPlace}} personnes</p>
+            <p class="footer-text-card">{{post.attendees.length}}/{{post.groupSize}} personnes</p>
         </ion-col>
         <ion-col>
             <p class="footer-text-card ion-text-right">{{diffDays}} jours restant</p>

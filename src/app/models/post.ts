@@ -1,18 +1,25 @@
 import {Type} from './type';
 import {User} from './user';
+import {Category} from './category';
+import {Group} from './group';
+import {Tag} from './tag';
 
 export interface Post {
-    _id: string;
+    id: string;
     title: string;
     description: string;
     attendees: Array<string | User>;
-    host: string | User;
-    types: Array<string | Type>;
-    dateEvent: number;
-    maxPlace: number;
-    location: string;
+    user: string;
+    types?: Array<string>;
     additionalInformation: string;
-    tags: Array<string>;
+    tags: Array<string | Tag>;
+    categories: Array<string>;
+    groupSize: number;
+    medias: Array<string>;
+    name: string;
+    postal: string;
+    timestamp: number;
+    waitList: Array<User | string>;
 }
 
 export interface SearchPost {

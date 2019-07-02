@@ -1,9 +1,9 @@
 <ion-card (click)="clickCard()">
     <img [src]="'./assets/image/double-burger.jpg'" [alt]="'header-post'">
-    <ion-row padding-top padding-horizontal>
-        <h1>{{post.title | titlecase}}</h1>
+    <ion-row padding-top  class="card">
+        <h1>{{post.name | titlecase}}</h1>
     </ion-row>
-    <ion-row class="cardfooter">
+    <ion-row class="card-footer">
         <ion-col>
             <p class="footer-text-card ion-text-right">{{diffDays}} jours restant</p>
         </ion-col>
