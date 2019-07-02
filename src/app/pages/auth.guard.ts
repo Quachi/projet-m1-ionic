@@ -13,20 +13,20 @@ export class AuthGuard implements CanActivate {
     private isLogged = false;
 
     async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return await this.userService.isReady().then(() => {
-            this.userService.check()
-                .then((gotToken) => console.log('gotToken', gotToken));
-        })
-            .then(() => {
-                if (this.isLogged) {
-                    console.log('can activate', true);
-                    return true;
-                } else {
-                    console.log('can activate', false);
-                    this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}}).catch(error => console.error(error));
-                    return false;
-                }
+        const promise = new Promise((resolve) => {
+            this.userService.isReady().then(() => {
+                this.userService.check()
+                    .then((gotToken) => resolve(gotToken));
             });
+        });
+        return promise.then((resultChecking) => {
+            if (resultChecking) {
+                return true;
+            } else {
+                this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}}).catch(error => console.error(error));
+                return false;
+            }
+        });
 
 
     }
