@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProfileService} from './service/profile.service';
 
+
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.page.html',
@@ -8,14 +9,8 @@ import {ProfileService} from './service/profile.service';
 })
 export class ProfilePage implements OnInit {
 
-    constructor(private profileService: ProfileService) {
-    }
+    constructor(private profileService: ProfileService) {}
 
-    ngOnInit() {
-        this.profileService.getMyProfile()
-            .then(response => {
-                console.log(response);
-            });
-    }
+    ngOnInit() {}
 
 }

@@ -4,6 +4,7 @@ import {UserService} from '../../shared/services/user.service';
 import {LoginUser} from '../../models/user';
 import {HttpService} from '../../shared/services/http.service';
 import {Router} from '@angular/router';
+import { Token } from "../../models/token"
 
 @Component({
     selector: 'app-login',
@@ -28,13 +29,17 @@ export class LoginPage implements OnInit {
 
     submit() {
         const user: LoginUser = this.loginForm.getRawValue();
-        console.log(user);
-        this.userService.login(user).then(response => {
-            this.httpService.setToken(response.token);
-            this.userService.currentUserSubject.next(user);
-            this.router.navigate(['/home'])
-                .catch(error => console.error(error));
-            localStorage.setItem('currentUser', JSON.stringify(user));
-        });
+        this.httpService.post<Token>("/profile/login", user).then((data: Token) => {
+            this.userService.set(data)
+            this.router.navigate(["/home"]).catch(err => console.error(err))
+        })
+        // console.log(user);
+        // this.userService.login(user).then(response => {
+        //     this.httpService.setToken(response.token);
+        //     this.userService.currentUserSubject.next(user);
+        //     this.router.navigate(['/home'])
+        //         .catch(error => console.error(error));
+        //     localStorage.setItem('currentUser', JSON.stringify(user));
+        // });
     }
 }
