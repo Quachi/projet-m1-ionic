@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Storage} from '@ionic/storage';
+import {Injectable} from '@angular/core'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {Storage} from '@ionic/storage'
 import { UserService } from "./user.service"
+import { Token } from "../../models/token"
 
 @Injectable({
     providedIn: 'root'
@@ -14,36 +14,40 @@ export class HttpService {
     constructor(
         private http: HttpClient,
         private storage: Storage,
-        private userService: UserService) {}
+        private userService: UserService
+    ) {}
 
-    get<T>(url: string): Observable<T> {
-        const options = {headers: this.buildToken()};
-        console.log(this.token);
-        return this.http.get<T>(url, options);
-    }
-
-    post<T>(url: string, data={}, type="application/json"): Observable<T> {
+    async get<T>(url: string): Promise<T> {
         const headers = new HttpHeaders()
-        headers.append("Content-Type", type)
-        if(url != "/profile/login" && this.userService.check())
-            headers.append("Authorization", `bearer ${this.userService.get().token}`)
-        if(headers.keys.length == 2 && Date.now() >= this.userService.get().expiresIn) { return }
-        return this.http.post<T>(`${this.server}${url}`, data, {headers: headers});
+        const token: Token = await this.userService.get()
+        await this.userService.check().then(() => headers.append("Authorization", `bearer ${token.token}`))
+        console.log("[GET] TOKEN", token)
+        console.log("[GET] HEADERS", headers)
+        return this.http.get<T>(`${this.server}${url}`, {headers: headers}).toPromise()
     }
 
-    put<T>(url: string, data={}, type="application/json"): Observable<T> {
+    async post<T>(url: string, data={}, type="application/json"): Promise<T> {
         const headers = new HttpHeaders()
+        const token: Token = await this.userService.get()
         headers.append("Content-Type", type)
-        headers.append("Authorization", `bearer ${this.userService.get().token}`)
-        if(Date.now() >= this.userService.get().expiresIn) { return }
-        return this.http.post<T>(`${this.server}${url}`, data, {headers: headers});
+        if(url != "/profile/login") {
+            await this.userService.check().then(() => headers.append("Authorization", `bearer ${token.token}`))
+        }
+        return this.http.post<T>(`${this.server}${url}`, data, {headers: headers}).toPromise()
     }
 
+    async put<T>(url: string, data={}, type="application/json"): Promise<T> {
+        const headers = new HttpHeaders()
+        let token: Token = await this.userService.get()
+        await this.userService.check().catch(() => token = undefined)
+        if(!token) { return }
+        headers.append("Content-Type", type)
+        headers.append("Authorization", `bearer ${token.token}`)
+        return this.http.post<T>(`${this.server}${url}`, data, {headers: headers}).toPromise()
+    }
 
 
     /* OLD FUNCTIONS */
-
-
     setToken(token: string) {
         this.token = token;
         this.storage.set('token', token);
