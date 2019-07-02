@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
     {
@@ -11,8 +12,8 @@ const routes: Routes = [
     {path: 'post/:id', loadChildren: './post/post.module#PostPageModule'},
     {path: 'result-search', loadChildren: './result-search/result.search.module#ResultSearchModule'},
     {path: 'home', loadChildren: './home/home.module#HomePageModule'},
-    {path: 'search', loadChildren: './search/search.module#SearchPageModule'},
-    {path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule'},
+    {path: 'search', loadChildren: './search/search.module#SearchPageModule', canActivate:[AuthGuard]},
+    {path: 'profile/:id', loadChildren: './profile/profile.module#ProfilePageModule'},
     {
         path: '**',
         redirectTo: 'home',
