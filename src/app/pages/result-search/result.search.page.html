@@ -1,25 +1,25 @@
 <ion-header class="header-search">
-    <ion-row padding-horizontal padding-top>
+    <ion-row padding>
         <ion-input class="search-input" [placeholder]="'burger 6 personnes'" padding></ion-input>
     </ion-row>
     <!--TO DO : Reduce button size -->
     <!--TO DO : Animate header, it's hidden while user action-->
-    <ion-row *ngIf="tags.length < 6" padding>
+<!--    <ion-row *ngIf="tags.length < 6" padding>
         <ion-badge  *ngFor="let tag of tags"  class="categories-badge">{{tag}}<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
-    </ion-row>
-
-    <ion-row padding *ngIf="tags.length > 6">
+    </ion-row>-->
+<!--ROW TAG to develop-->
+<!--    <ion-row padding *ngIf="tags.length > 6">
         <ion-slides [options]="slideOpts">
             <ion-slide *ngFor="let tag of tags">
                 <ion-badge class="categories-badge">{{tag}}<ion-icon name="close" class="delete-categ-icon"></ion-icon></ion-badge>
             </ion-slide>
         </ion-slides>
-    </ion-row>
+    </ion-row>-->
 </ion-header>
 
 <ion-content #pageContent [scrollEvents]="true">
     <div *ngFor="let post of posts">
-        <app-post-summup [post]="post" (click)="detailPost(post._id)"></app-post-summup>
+        <app-post-summup [post]="post" (click)="detailPost(post.id)"></app-post-summup>
     </div>
 </ion-content>
 <app-toolbar [pageContent]="pageContent"></app-toolbar>

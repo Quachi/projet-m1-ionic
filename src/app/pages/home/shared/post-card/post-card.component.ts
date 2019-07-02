@@ -14,7 +14,7 @@ export class PostCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        const timeLeft = Math.abs(this.post.dateEvent - new Date().getTime());
+        const timeLeft = Math.abs(this.post.timestamp - new Date().getTime());
         this.diffDays = Math.ceil(timeLeft / (24 * 60 * 60 * 1000));
     }
 
