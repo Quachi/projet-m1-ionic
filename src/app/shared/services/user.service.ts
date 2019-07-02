@@ -2,36 +2,40 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {User} from '../../models/user';
 import {environment} from '../../../environments/environment';
-import { Token } from "../../models/token"
-import { Storage } from "@ionic/storage"
+import {Token} from '../../models/token';
+import {Storage} from '@ionic/storage';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
-    private url = environment.apiUrl;
-
     currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
 
-    constructor(private storage: Storage) {}
-
-    isReady = (): Promise<any> => this.storage.ready()
-    
-    check = async () => {
-        const token = await this.get()
-        return new Promise<boolean>((resolve, reject) => {
-            (token.token && Date.now() < token.expiresIn) ? resolve(true): reject(false)
-        })
+    constructor(private storage: Storage) {
     }
-    
-    get = (): Promise<Token> => this.storage.get("token").then((data: Token) => data)
-    
+
+    isReady = (): Promise<any> => this.storage.ready();
+
+    check = async (): Promise<boolean> => {
+        const token = await this.get();
+        return new Promise<boolean>((resolve) => {
+            if (token === null) {
+                resolve(false);
+            } else {
+                (token.token && Date.now() < token.expiresIn) ? resolve(true) : resolve(false);
+            }
+        });
+    }
+
+    get = (): Promise<Token> => this.storage.get('token');
+
     set = (data: Token) => {
-        data.expiresIn = Date.now() + (data.expiresIn * 1000)
-        this.storage.set("token", data)
+        data.expiresIn = Date.now() + (data.expiresIn * 1000);
+        this.storage.set('token', data)
+            .catch(error => console.error(error));
     }
 
-    delete = () => this.storage.remove("token")
+    delete = () => this.storage.remove('token');
 
     /* OLD FUNCTIONS */
 

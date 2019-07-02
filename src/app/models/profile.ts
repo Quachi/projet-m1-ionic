@@ -12,7 +12,6 @@ export interface Profile {
     group: Array<Group | string>;
     groupSize: number;
     media: Array<string>;
-    username: string;
     avatar?: string;
     posts: Array<Post>;
     historyPosts: Array<Post>;
