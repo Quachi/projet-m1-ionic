@@ -1,0 +1,38 @@
+<ion-content fullscreen>
+  <form onsubmit="">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Description <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Nombre de personne <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Ajouter un tag</ion-label>
+        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Start Time</ion-label>
+        <ion-datetime display-format="MMM DD, YYYY HH:mm" picker-format="MMM DD, YYYY HH:mm" value="1990-02-19T07:43Z"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Type</ion-label>
+        <ion-select okText="valider" cancelText="retour">
+          <ion-select-option *ngFor="let type of types" [value]="type.id">{{type.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+  </form>
+</ion-content>

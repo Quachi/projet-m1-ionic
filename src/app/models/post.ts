@@ -34,13 +34,12 @@ export interface SearchPost {
 }
 
 export interface AddPost {
-    title: string;
+    name: string;
     description: string;
-    host: string | User;
     types: Array<string | Type>;
-    dateEvent: number;
-    maxPlace: number;
-    location: string;
+    timestamp: number;
+    groupSize: number;
+    postal: string;
     additionalInformation?: string;
     tags: Array<string>;
 }

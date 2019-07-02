@@ -7,6 +7,7 @@ import {IonicModule} from '@ionic/angular';
 
 import {ProfilePage} from './profile.page';
 import {SharedModule} from '../../shared/shared.module';
+import {AddPostComponent} from './add-post/add-post.component';
 
 const routes: Routes = [
     {
@@ -23,7 +24,8 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         SharedModule
     ],
-    declarations: [ProfilePage]
+    declarations: [ProfilePage, AddPostComponent],
+    entryComponents: [AddPostComponent]
 })
 export class ProfilePageModule {
 }

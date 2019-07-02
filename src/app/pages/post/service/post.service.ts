@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Profile} from '../../../models/profile';
 import {HttpService} from '../../../shared/services/http.service';
 import {environment} from '../../../../environments/environment';
 import {Post} from '../../../models/post';
+import {Type} from '../../../models/type';
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +21,11 @@ export class PostService {
 
     getPostById(id: string): Promise<Post> {
         return this.httpService.get<Post>(`${this.apiUrl}/post/${id}`)
+            .toPromise();
+    }
+
+    getAllType(): Promise<Array<Type>> {
+        return this.httpService.get<Array<Type>>(`${this.apiUrl}/type`)
             .toPromise();
     }
 }

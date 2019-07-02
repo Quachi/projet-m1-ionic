@@ -1,4 +1,4 @@
 export interface Type {
-    _id: string;
+    id: string;
     name: string;
 }
