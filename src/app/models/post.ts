@@ -5,22 +5,21 @@ import {Group} from './group';
 import {Tag} from './tag';
 
 export interface Post {
-    _id: string;
+    id: string;
     title: string;
     description: string;
     attendees: Array<string | User>;
-    user: string | User;
-    types: Array<string | Type>;
-    dateEvent: number;
+    user: string;
+    types?: Array<string>;
     additionalInformation: string;
     tags: Array<string | Tag>;
-    categories: Array<Category | string>;
+    categories: Array<string>;
     groupSize: number;
     medias: Array<string>;
     name: string;
     postal: string;
     timestamp: number;
-    waitList: [User | string];
+    waitList: Array<User | string>;
 }
 
 export interface SearchPost {

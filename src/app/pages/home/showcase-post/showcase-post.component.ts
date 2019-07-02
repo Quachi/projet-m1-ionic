@@ -26,14 +26,19 @@ export class ShowcasePostComponent implements OnInit {
     ngOnInit() {
         this.postService.searchPost('all', 'all')
             .then(response => {
-                console.log(response);
                 this.posts = response;
             });
     }
 
     showMore() {
-
         this.route.navigate(['/result-search'])
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    redirect(id: string) {
+        this.route.navigate(['/post/' + id])
             .catch(error => {
                 console.error(error);
             });

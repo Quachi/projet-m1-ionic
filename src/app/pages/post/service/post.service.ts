@@ -18,4 +18,9 @@ export class PostService {
         return this.httpService.get<Array<Post>>(`${this.apiUrl}/post/search`)
             .toPromise();
     }
+
+    getPostById(id: string): Promise<Post> {
+        return this.httpService.get<Post>(`${this.apiUrl}/post/${id}`)
+            .toPromise();
+    }
 }

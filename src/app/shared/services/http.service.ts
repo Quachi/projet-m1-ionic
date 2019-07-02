@@ -14,7 +14,6 @@ export class HttpService {
 
     get<T>(url: string): Observable<T> {
         const options = {headers: this.buildToken()};
-        console.log(this.token);
         return this.http.get<T>(url, options);
     }
 

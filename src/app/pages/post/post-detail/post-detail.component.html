@@ -5,17 +5,17 @@
   <ion-list>
     <ion-item>
       <ion-label class="post-detail-label">Type d'annonce</ion-label>
-      <div *ngFor="let type of post.types">
-        <p class="post-detail-text">{{type}}</p>
+      <div *ngFor="let type of types">
+        <p class="post-detail-text">{{type.name}}</p>
       </div>
     </ion-item>
     <ion-item>
       <ion-label class="post-detail-label">Nombres de personnes</ion-label>
-      <p class="post-detail-text">{{post.attendees.length}}</p>
+      <p class="post-detail-text">{{post.attendees.length}} / {{post.groupSize}}</p>
     </ion-item>
     <ion-item>
       <ion-label class="post-detail-label">Date limite</ion-label>
-      <p class="post-detail-text">{{post.dateEvent | date: 'dd-MM-yyyy'}}</p>
+      <p class="post-detail-text">{{post.timestamp | date: 'dd-MM-yyyy HH:SS'}}</p>
     </ion-item>
   </ion-list>
 </ion-grid>

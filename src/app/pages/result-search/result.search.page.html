@@ -19,7 +19,7 @@
 
 <ion-content #pageContent [scrollEvents]="true">
     <div *ngFor="let post of posts">
-        <app-post-summup [post]="post" (click)="detailPost(post._id)"></app-post-summup>
+        <app-post-summup [post]="post" (click)="detailPost(post.id)"></app-post-summup>
     </div>
 </ion-content>
 <app-toolbar [pageContent]="pageContent"></app-toolbar>

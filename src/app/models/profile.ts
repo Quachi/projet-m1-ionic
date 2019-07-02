@@ -18,7 +18,7 @@ export interface Profile {
     historyComments: Array<Commentary>;
     user: User | string;
     mail: string;
-    name: string;
+    username: string;
     postal: string;
     tags: Array<string | Tag>;
     timestamp: number;
