@@ -1,33 +1,66 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
 import {Storage} from '@ionic/storage';
+import {UserService} from './user.service';
+import {Token} from '../../models/token';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class HttpService {
     token: string = null;
+    private apiUrl = environment.apiUrl;
 
-    constructor(public http: HttpClient, public storage: Storage) {
+    constructor(
+        private http: HttpClient,
+        private storage: Storage,
+        private userService: UserService
+    ) {
     }
 
-    get<T>(url: string): Observable<T> {
-        const options = {headers: this.buildToken()};
-        return this.http.get<T>(url, options);
+    async get<T>(url: string): Promise<T> {
+        const headers = new HttpHeaders();
+        const token: Token = await this.userService.get();
+        await this.userService.check()
+            .then((gotToken) => {
+                if (gotToken) {
+                    headers.append('Authorization', `bearer ${token.token}`);
+                }
+            });
+        /*       console.log('[GET] TOKEN', token)
+               console.log('[GET] HEADERS', headers);*/
+        return this.http.get<T>(`${this.apiUrl}${url}`, {headers: headers}).toPromise();
     }
 
-    post<T>(url: string, data: any): Observable<T> {
-        const option = {headers: this.buildToken()};
-        return this.http.post<T>(url, data, option);
+    async post<T>(url: string, data = {}, type = 'application/json'): Promise<T> {
+        const headers = new HttpHeaders();
+        const token: Token = await this.userService.get();
+        headers.append('Content-Type', type);
+        if (url !== '/profile/login') {
+            await this.userService.check()
+                .then(() => headers.append('Authorization', `bearer ${token.token}`));
+        }
+        return this.http.post<T>(`${this.apiUrl}${url}`, data, {headers: headers}).toPromise();
     }
 
+    async put<T>(url: string, data = {}, type = 'application/json'): Promise<T> {
+        const headers = new HttpHeaders();
+        let token: Token = await this.userService.get();
+        await this.userService.check().catch(() => token = undefined);
+        if (!token) {
+            return;
+        }
+        headers.append('Content-Type', type);
+        headers.append('Authorization', `bearer ${token.token}`);
+        return this.http.post<T>(`${this.apiUrl}${url}`, data, {headers: headers}).toPromise();
+    }
+
+
+    /* OLD FUNCTIONS */
     setToken(token: string) {
         this.token = token;
-        this.storage.set('token', token)
-            .catch(error => {
-                console.error(error);
-            });
+        this.storage.set('token', token);
     }
 
     buildToken() {

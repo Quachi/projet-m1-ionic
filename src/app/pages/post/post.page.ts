@@ -46,8 +46,8 @@ export class PostPage implements OnInit {
                 this.post = response;
                 this.getProfile(this.post);
             });
-        this.isLogged = this.userService.getCurrentUser() !== null;
-
+        this.userService.check()
+            .then((gotToken) => this.isLogged = gotToken);
     }
 
     async presentModal() {

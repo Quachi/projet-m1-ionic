@@ -6,12 +6,13 @@ import {User} from './user';
 import {Tag} from './tag';
 
 export interface Profile {
-    id?: string;
+    _id?: string;
     categories: Array<Category | string>;
-    description: string;
+    description?: string;
     group: Array<Group | string>;
     groupSize: number;
     media: Array<string>;
+    avatar?: string;
     posts: Array<Post>;
     historyPosts: Array<Post>;
     comments: Array<Commentary>;

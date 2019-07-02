@@ -3,6 +3,7 @@ import {ProfileService} from './service/profile.service';
 import {ModalController} from '@ionic/angular';
 import {AddPostComponent} from './add-post/add-post.component';
 
+
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.page.html',

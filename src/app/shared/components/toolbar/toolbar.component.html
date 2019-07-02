@@ -21,7 +21,7 @@
             <ion-icon name="contact"></ion-icon>
         </ion-tab-button>
 
-        <ion-tab-button tab="account" (click)="redirect('profile')" *ngIf="isLogged">
+        <ion-tab-button tab="account" (click)="redirect('profile/me')" *ngIf="isLogged">
             <ion-label>Profile</ion-label>
             <ion-icon name="person"></ion-icon>
         </ion-tab-button>

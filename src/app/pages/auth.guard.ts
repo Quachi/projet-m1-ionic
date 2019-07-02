@@ -6,24 +6,28 @@ import {UserService} from '../shared/services/user.service';
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-    constructor(
-        private router: Router,
-        private userService: UserService
-    ) {
+    constructor(private router: Router,
+                private userService: UserService) {
     }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        console.log('can activate', this.userService.getCurrentUser());
-        if (this.userService.getCurrentUser()) {
-            // authorised so return true
-            return true;
-        }
+    private isLogged = false;
 
-        // not logged in so redirect to login page with the return url
-        this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}})
-            .catch(error => {
-                console.error(error);
+    async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        const promise = new Promise((resolve) => {
+            this.userService.isReady().then(() => {
+                this.userService.check()
+                    .then((gotToken) => resolve(gotToken));
             });
-        return false;
+        });
+        return promise.then((resultChecking) => {
+            if (resultChecking) {
+                return true;
+            } else {
+                this.router.navigate(['/login'], {queryParams: {returnUrl: state.url}}).catch(error => console.error(error));
+                return false;
+            }
+        });
+
+
     }
 }
