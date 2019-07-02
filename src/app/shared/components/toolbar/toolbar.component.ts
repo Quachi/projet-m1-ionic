@@ -14,12 +14,14 @@ export class ToolbarComponent implements OnInit {
     isLogged: boolean
     @Input() pageContent;
 
-    constructor(private router: Router, private userService: UserService) {
+    constructor(private router: Router, private userService: UserService) {}
 
-    }
     ngOnInit() {
-        setTimeout(() => this.isLogged = this.userService.check(), 1)
+        this.userService.isReady().then(() => {
+            this.userService.check()
+                .then(() => this.isLogged = true)
+                .catch(() => this.isLogged = false)
+        })
     }
-
     redirect = (route: string) => this.router.navigate([`/${route}`]).catch(err => console.error(err))
 }
