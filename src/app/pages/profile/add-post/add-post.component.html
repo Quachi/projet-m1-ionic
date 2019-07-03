@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Annuler</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <form (ngSubmit)="submit()" [formGroup]="addPostForm">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" formControlName="name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Description <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" formControlName="description" name="description"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Nombre de personne <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="number" formControlName="groupSize" [min]="1"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Ajouter un tag</ion-label>
+        <ion-input required type="text" formControlName="tags"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="file" formControlName="media" (change)="onFileSelect($event)">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Début de l'évènement <ion-text color="danger">*</ion-text></ion-label>
+        <ion-datetime display-format="DD-MMM-YYYY HH"
+                      picker-format="DD-MMM-YYYY HH"
+                      [min]="today"
+                      [max]="2025"
+                      formControlName="timestamp" (change)="onDateSelect($event)">
+        </ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Catégorie <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select okText="valider" cancelText="retour" formControlName="categories">
+          <ion-select-option *ngFor="let type of types" [value]="type.id">{{type.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div padding>
+        <ion-button [disabled]="!addPostForm.valid" type="submit" expand="block">Ajouter</ion-button>
+      </div>
+
+    </ion-list>
+  </form>
+</ion-content>

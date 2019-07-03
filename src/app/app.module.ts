@@ -11,10 +11,11 @@ import {AppRoutingModule} from './pages/app-routing.module';
 import {SharedModule} from './shared/shared.module';
 import {IonicStorageModule} from '@ionic/storage';
 
-import { UserService } from "./shared/services/user.service"
+import {UserService} from './shared/services/user.service';
+import {FileValidatorDirective} from './directive/file-validator.directive';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, FileValidatorDirective],
     entryComponents: [],
     imports: [
         BrowserModule,

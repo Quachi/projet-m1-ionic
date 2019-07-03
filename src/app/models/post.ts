@@ -1,7 +1,5 @@
 import {Type} from './type';
 import {User} from './user';
-import {Category} from './category';
-import {Group} from './group';
 import {Tag} from './tag';
 
 export interface Post {
@@ -34,13 +32,13 @@ export interface SearchPost {
 }
 
 export interface AddPost {
-    title: string;
+    name: string;
     description: string;
-    host: string | User;
     types: Array<string | Type>;
-    dateEvent: number;
-    maxPlace: number;
-    location: string;
+    media?: string;
+    timestamp: number;
+    groupSize: number;
+    postal: string;
     additionalInformation?: string;
     tags: Array<string>;
 }
