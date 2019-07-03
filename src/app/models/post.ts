@@ -1,7 +1,5 @@
 import {Type} from './type';
 import {User} from './user';
-import {Category} from './category';
-import {Group} from './group';
 import {Tag} from './tag';
 
 export interface Post {
@@ -37,6 +35,7 @@ export interface AddPost {
     name: string;
     description: string;
     types: Array<string | Type>;
+    media?: string;
     timestamp: number;
     groupSize: number;
     postal: string;

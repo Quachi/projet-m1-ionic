@@ -30,12 +30,12 @@ export class HttpService {
     }
 
     async post<T>(url: string, data = {}, type = 'application/json'): Promise<T> {
-        const headers = new HttpHeaders();
+        let headers = new HttpHeaders();
         const token: Token = await this.userService.get();
         headers.append('Content-Type', type);
         if (url !== '/profile/login') {
             await this.userService.check()
-                .then(() => headers.append('Authorization', `bearer ${token.token}`));
+                .then(() => headers = headers.append('Authorization', `bearer ${token.token}`));
         }
         return this.http.post<T>(`${this.apiUrl}${url}`, data, {headers: headers}).toPromise();
     }

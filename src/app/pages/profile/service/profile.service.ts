@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../../../shared/services/http.service';
-import {UserService} from '../../../shared/services/user.service';
 import {Profile} from '../../../models/profile';
 import {Type} from '../../../models/type';
 
@@ -9,14 +8,8 @@ import {Type} from '../../../models/type';
 })
 export class ProfileService {
 
-    // private profile: Profile;
 
-    constructor(private httpService: HttpService, private userService: UserService) {
-        this.userService.isReady().then(() => {
-            this.httpService.get<Profile>('/profile/me')
-                .then(data => console.log('PROFILE OK', data))
-                .catch(err => console.error('PROFILE ERROR', err));
-        });
+    constructor(private httpService: HttpService) {
     }
 
     getMyProfile(): Promise<Profile> {
