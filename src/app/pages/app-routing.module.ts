@@ -19,8 +19,6 @@ const routes: Routes = [
         path: '**',
         redirectTo: 'home',
     },
-    {path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule'},
-  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' }
 ];
 
 @NgModule({
