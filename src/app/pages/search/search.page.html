@@ -19,20 +19,12 @@
                 <h1>Catégories</h1>
             </ion-row>
             <ion-row>
-                <ion-col>
-                    <ion-badge class="categories-badge" (click)="addCategory()">
-                        <ion-icon name="add"></ion-icon>
-                    </ion-badge>
-                </ion-col>
-                <ion-col>
-                    <ion-badge class="categories-badge">Catégorie 1</ion-badge>
-                </ion-col>
-                <ion-col>
-                    <ion-badge class="categories-badge">Catégorie 1</ion-badge>
-                </ion-col>
-                <ion-col>
-                    <ion-badge class="categories-badge">Catégorie 1</ion-badge>
-                </ion-col>
+                <ion-badge class="categories-badge">Catégorie 1</ion-badge>
+                <ion-badge class="categories-badge">Catégorie 1</ion-badge>
+                <ion-badge class="categories-badge">Catégorie 1</ion-badge>
+                <ion-badge class="categories-badge" (click)="addCategory()">
+                    <ion-icon name="add"></ion-icon>
+                </ion-badge>
             </ion-row>
         </ion-row>
         <ion-row>
@@ -43,7 +35,7 @@
         <ion-row>
             <ion-input class="search-input" [placeholder]="'Rechercher'" padding></ion-input>
         </ion-row>
-        <ion-row>
+        <ion-row padding-vertical>
             <ion-icon name="pin" [color]="'orange'"></ion-icon>
             <a href="" id="proximity-link">À proximité de ma position</a>
         </ion-row>

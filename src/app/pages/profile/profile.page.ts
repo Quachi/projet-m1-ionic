@@ -22,6 +22,7 @@ export class ProfilePage implements OnInit {
         this.profileService.getMyProfile()
             .then(response => {
                 this.profile = response;
+                console.log('Profil', this.profile);
             });
     }
 
