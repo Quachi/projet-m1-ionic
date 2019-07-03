@@ -20,7 +20,6 @@ export class PostService {
     }
 
     getAllType(): Promise<Array<Type>> {
-        return this.httpService.get<Array<Type>>(`${this.apiUrl}/type`)
-            .toPromise();
+        return this.httpService.get<Array<Type>>(`/type`);
     }
 }
