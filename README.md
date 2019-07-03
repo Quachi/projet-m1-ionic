@@ -1,4 +1,4 @@
-# PARTAMIAM - Marc, Nasser Kevin 
+# PARTAMIAM - Marc JEANNET et Kevin QUACH 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
 
