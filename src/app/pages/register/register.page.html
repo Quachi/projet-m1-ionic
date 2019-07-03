@@ -1,0 +1,35 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content padding>
+
+    <form [formGroup]="registerForm" (ngSubmit)="submit()">
+        <div padding-vertical>
+            <ion-row>
+                <ion-input formControlName="username" type="text" class="input" [placeholder]="'Pseudo'" padding></ion-input>
+            </ion-row>
+        </div>
+
+        <div padding-vertical>
+            <ion-row>
+                <ion-input formControlName="mail" type="text" class="input" [placeholder]="'Email'" padding></ion-input>
+            </ion-row>
+        </div>
+
+        <div padding-vertical>
+            <ion-row>
+                <ion-input formControlName="password" type="password" class="input" [placeholder]="'Mot de passe'" padding></ion-input>
+            </ion-row>
+        </div>
+
+        <div padding-vertical>
+            <ion-row>
+                <ion-input formControlName="confirmPassword" type="password" class="input" [placeholder]="'Confirmer'" padding ></ion-input>
+            </ion-row>
+            <div *ngIf="f.confirmPassword.errors.mustMatch" >Passwords must match</div>
+        </div>
+        <ion-button type="submit" class="search-btn" shape="" expand="block" fill="outline" >S'inscrire</ion-button>
+    </form>
+</ion-content>
+<app-toolbar [pageContent]="pageContent"></app-toolbar>

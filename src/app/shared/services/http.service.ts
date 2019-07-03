@@ -23,7 +23,11 @@ export class HttpService {
         const token: Token = await this.userService.get();
         let headers: HttpHeaders = new HttpHeaders();
         await this.userService.check()
-            .then(() => headers = headers.append('Authorization', `bearer ${token.token}`));
+            .then((gotToken) => {
+                if (gotToken) {
+                    headers = headers.append('Authorization', `bearer ${token.token}`);
+                }
+            });
         /*       console.log('[GET] TOKEN', token)
                console.log('[GET] HEADERS', headers);*/
         return this.http.get<T>(`${this.apiUrl}${url}`, {headers: headers}).toPromise();
@@ -32,10 +36,14 @@ export class HttpService {
     async post<T>(url: string, data = {}, type = 'application/json'): Promise<T> {
         let headers = new HttpHeaders();
         const token: Token = await this.userService.get();
-        headers.append('Content-Type', type);
+        headers = headers.append('Content-Type', type);
         if (url !== '/profile/login') {
             await this.userService.check()
-                .then(() => headers = headers.append('Authorization', `bearer ${token.token}`));
+                .then((gotToken) => {
+                    if (gotToken) {
+                        headers = headers.append('Authorization', `bearer ${token.token}`);
+                    }
+                });
         }
         return this.http.post<T>(`${this.apiUrl}${url}`, data, {headers: headers}).toPromise();
     }

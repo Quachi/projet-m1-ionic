@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpService} from '../../../shared/services/http.service';
 import {Profile} from '../../../models/profile';
 import {Type} from '../../../models/type';
+import {AddUser} from '../../../models/user';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +25,11 @@ export class ProfileService {
     getTypeById(id: string): Promise<Type> {
         return this.httpService
             .get<Type>(`/type/${id}`);
+    }
+
+    register(profile: AddUser): Promise<any> {
+        return this.httpService
+            .post(`/profile/register`, profile);
     }
 
     getArrayType(typesId: Array<string>): Promise<Array<Type>> {

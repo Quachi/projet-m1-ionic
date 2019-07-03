@@ -23,6 +23,5 @@ export interface Profile {
     postal: string;
     tags: Array<string | Tag>;
     timestamp: number;
-
 }
 
