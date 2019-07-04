@@ -4,6 +4,7 @@ import {MustMatch} from './must-match';
 import {ProfileService} from '../profile/service/profile.service';
 import {Router} from '@angular/router';
 import {UserService} from '../../shared/services/user.service';
+import {LoadingController} from '@ionic/angular';
 
 @Component({
     selector: 'app-register',
@@ -16,7 +17,8 @@ export class RegisterPage implements OnInit {
     constructor(private formBuilder: FormBuilder,
                 private profileService: ProfileService,
                 private userService: UserService,
-                private router: Router) {
+                private router: Router,
+                public loadingController: LoadingController) {
         this.registerForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required],
@@ -42,10 +44,21 @@ export class RegisterPage implements OnInit {
     }
 
     submit() {
-        console.log(this.registerForm.value);
+        this.Loading();
         this.profileService.register(this.registerForm.value)
-            .then(() => this.router.navigate(['/login']));
+            .then(() => {
+                this.router.navigate(['/login'])
+                    .catch(error => console.error(error));
+            });
     }
 
-
+    async Loading() {
+        const loading = await this.loadingController.create({
+            duration: 4000,
+            translucent: true,
+            cssClass: 'custom-class custom-loading',
+            spinner: 'crescent',
+        });
+        return await loading.present();
+    }
 }
