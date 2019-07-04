@@ -1,10 +1,15 @@
-ion-input{
-  -moz-box-shadow:    inset 1px 1px 1px 1px #ccc;
-  -webkit-box-shadow: inset 1px 1px 1px 1px #ccc;
-  box-shadow:         inset 1px 1px 1px 1px #ccc;
-  border-radius: 5px;
+//ion-input{
+//  -moz-box-shadow:    1px 1px 1px 1px #ccc;
+//  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+//  box-shadow:         0 0 6px #ccc;
+//  border-radius: 10px;
+//}
+.input {
+  -moz-box-shadow:    1px 1px 1px 1px #ccc;
+  -webkit-box-shadow: 1px 1px 1px 1px #ccc;
+  box-shadow:         0 0 6px #ccc;
+  border-radius: 10px;
 }
-
 ion-item{
   border: 0;
   margin: 10px 0
