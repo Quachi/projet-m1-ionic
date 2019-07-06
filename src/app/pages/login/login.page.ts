@@ -5,6 +5,7 @@ import {LoginUser} from '../../models/user';
 import {HttpService} from '../../shared/services/http.service';
 import {Router} from '@angular/router';
 import {Token} from '../../models/token';
+import {LoadingController} from '@ionic/angular';
 
 @Component({
     selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginPage implements OnInit {
     constructor(private formBuilder: FormBuilder,
                 private userService: UserService,
                 private httpService: HttpService,
-                private router: Router) {
+                private router: Router,
+                public loadingController: LoadingController) {
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required],
@@ -29,17 +31,22 @@ export class LoginPage implements OnInit {
 
     submit() {
         const user: LoginUser = this.loginForm.getRawValue();
-        this.httpService.post<Token>('/profile/login', user).then((data: Token) => {
-            this.userService.set(data);
-            this.router.navigate(['/home']).catch(err => console.error(err));
+        this.Loading().catch(error => console.log(error));
+        this.httpService.post<Token>('/profile/login', user)
+            .then((data: Token) => {
+                this.userService.set(data);
+                this.router.navigate(['/home'])
+                    .catch(error => console.error(error));
+            });
+    }
+
+    async Loading() {
+        const loading = await this.loadingController.create({
+            duration: 4000,
+            translucent: true,
+            cssClass: 'custom-class custom-loading',
+            spinner: 'crescent',
         });
-        // console.log(user);
-        // this.userService.login(user).then(response => {
-        //     this.httpService.setToken(response.token);
-        //     this.userService.currentUserSubject.next(user);
-        //     this.router.navigate(['/home'])
-        //         .catch(error => console.error(error));
-        //     localStorage.setItem('currentUser', JSON.stringify(user));
-        // });
+        return await loading.present();
     }
 }
